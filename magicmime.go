@@ -31,7 +31,7 @@ type Magic struct {
 
 func New() (*Magic, error) {
 	db := C.magic_open(C.int(0))
-	C.magic_setflags(db, C.int(C.MAGIC_MIME_TYPE|C.MAGIC_SYMLINK|C.MAGIC_ERROR))
+	C.magic_setflags(db, C.int(C.MAGIC_SYMLINK|C.MAGIC_ERROR))
 	if code := C.magic_load(db, nil); code != 0 {
 		return nil, errors.New(C.GoString(C.magic_error(db)))
 	}
